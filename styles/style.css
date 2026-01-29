@@ -1,1 +1,21 @@
-/* место для вашего кода */
+.header {
+  display: grid;
+  grid-template-columns: 1fr min-content 1fr;
+  align-items: center;
+  padding: 92 50 96;
+}
+
+.header-logo {
+  display: block;
+}
+
+.header__menu {
+  display: flex;
+  gap: 13;
+  list-style: circle;
+}
+
+.address {
+  max-width: 240;
+  justify-self: end;
+}
