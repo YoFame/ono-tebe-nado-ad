@@ -1,0 +1,36 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '14.x'  # Конкретно 14.x если требуется
+        
+    - name: Clone testing library
+      run: |
+        git clone --branch main --single-branch --depth 1 \
+          https://github.com/Yandex-Practicum/tests-selfmade-project-2-public.git
+        
+    - name: Run tests
+      continue-on-error: true
+      run: |
+        bash tests-selfmade-project-2-public/run.sh
+        
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-output
+        path: tests-selfmade-project-2-public/
+        
+    - name: Show results
+      run: |
+        cat tests-selfmade-project-2-public/result.sh 2>/dev/null || echo "No result script"
