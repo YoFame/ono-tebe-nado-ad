@@ -1,1 +1,0 @@
-https://github.com/YoFame/ono-tebe-nado-ad
